@@ -1,0 +1,48 @@
+{
+  "initial": {
+    "id": "3beacc2c-b6e6-4ec4-a3c3-0d91da771d62",
+    "state": "pending",
+    "payload": {
+      "action": "request_missing_documents",
+      "description": "Vraag de ontbrekende synthetische dossierstukken op.",
+      "dossier": "SYN-001"
+    },
+    "reviewer": null,
+    "reason": null,
+    "execution_mode": "mock-local-task"
+  },
+  "without_approval_http": 409,
+  "final": {
+    "id": "3beacc2c-b6e6-4ec4-a3c3-0d91da771d62",
+    "state": "completed",
+    "payload": {
+      "action": "request_missing_documents",
+      "description": "Vraag de ontbrekende synthetische dossierstukken op.",
+      "dossier": "SYN-001"
+    },
+    "reviewer": "synthetic-reviewer",
+    "reason": "Synthetische bronnen gecontroleerd",
+    "execution_mode": "mock-local-task"
+  },
+  "audit": [
+    {
+      "seq": 1,
+      "actor": "synthetic-agent",
+      "action": "proposed",
+      "created": "2026-10-28 17:58:15"
+    },
+    {
+      "seq": 2,
+      "actor": "synthetic-reviewer",
+      "action": "approved",
+      "created": "2026-10-28 17:58:15"
+    },
+    {
+      "seq": 3,
+      "actor": "synthetic-executor",
+      "action": "mock-task-created",
+      "created": "2026-10-28 17:58:15"
+    }
+  ],
+  "external_calls": 0
+}

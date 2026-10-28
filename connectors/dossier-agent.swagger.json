@@ -1,0 +1,172 @@
+{
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "Proposal": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "pattern": "^(request_missing_documents|schedule_review)$",
+          "title": "Action",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 1000,
+          "minLength": 10,
+          "title": "Description",
+          "type": "string"
+        },
+        "dossier": {
+          "pattern": "^SYN-[A-Z0-9-]{1,40}$",
+          "title": "Dossier",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "maxLength": 100,
+          "minLength": 8,
+          "title": "Idempotency Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "idempotency_key",
+        "dossier",
+        "action",
+        "description"
+      ],
+      "title": "Proposal",
+      "type": "object"
+    },
+    "Task": {
+      "properties": {
+        "execution_mode": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "reason": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "reviewer": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "state": {
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "completed"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "state",
+        "payload",
+        "execution_mode"
+      ],
+      "type": "object"
+    }
+  },
+  "host": "replace-with-your-api-host.example.invalid",
+  "info": {
+    "description": "Propose a synthetic dossier task and read status. No approval or execution actions are exposed to the agent.",
+    "title": "Synthetic Dossier Assistant",
+    "version": "1.0"
+  },
+  "paths": {
+    "/requests": {
+      "post": {
+        "description": "Only synthetic dossier IDs starting with SYN-. Never promises that the task is executed. Reuse the same idempotency key on retries.",
+        "operationId": "ProposeDossierTask",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "proposal",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Proposal"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Task proposed or original idempotent result",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role rejected"
+          },
+          "409": {
+            "description": "Conflicting idempotency payload"
+          },
+          "422": {
+            "description": "Invalid proposal"
+          }
+        },
+        "summary": "Prepare a task for human review"
+      }
+    },
+    "/requests/{request_id}": {
+      "get": {
+        "operationId": "GetDossierTask",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "request_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current task state",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Not found in caller's tenant"
+          }
+        },
+        "summary": "Read task status"
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "https"
+  ],
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "in": "header",
+      "name": "X-API-Key",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0"
+}

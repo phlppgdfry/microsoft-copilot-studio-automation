@@ -1,3 +1,7 @@
+# Current verification — 29 October 2026
+
+A separate unmanaged solution and agent connector were accepted in the existing development tenant and exported through PAC. See [solution artifact](../solution/README.md). The reserved example host has no backend/connection, so the conversational, flow and HTTP acceptance steps below remain unverified.
+
 # Microsoft-tenantproef
 
 Dit is een uitvoerbaar integratierecept; de tenantstappen zijn nog niet in een echte omgeving bevestigd. Gebruik uitsluitend een testomgeving en synthetische dossiers. Controleer actuele licenties, connectorbeschikbaarheid en beleid met de tenantbeheerder.

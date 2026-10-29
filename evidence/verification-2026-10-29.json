@@ -1,0 +1,95 @@
+{
+  "executed_at": "2026-10-29T07:49:00.946480+00:00",
+  "repository": "microsoft-copilot-studio-automation",
+  "checks": [
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "--version"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "Python 3.13.18\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=evidence/tests-2026-10-29.xml"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": ".................                                                        [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.13/site-packages/fastapi/testclient.py:1\n  /Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n17 passed, 1 warning in 0.30s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "scripts/export_openapi.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "scripts/export_connector.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "-m",
+        "automation.demo"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "{\n  \"initial\": {\n    \"id\": \"935c1701-b131-4745-a035-d75b8961a102\",\n    \"state\": \"pending\",\n    \"payload\": {\n      \"action\": \"request_missing_documents\",\n      \"description\": \"Vraag de ontbrekende synthetische dossierstukken op.\",\n      \"dossier\": \"SYN-001\"\n    },\n    \"reviewer\": null,\n    \"reason\": null,\n    \"execution_mode\": \"mock-local-task\"\n  },\n  \"without_approval_http\": 409,\n  \"final\": {\n    \"id\": \"935c1701-b131-4745-a035-d75b8961a102\",\n    \"state\": \"completed\",\n    \"payload\": {\n      \"action\": \"request_missing_documents\",\n      \"description\": \"Vraag de ontbrekende synthetische dossierstukken op.\",\n      \"dossier\": \"SYN-001\"\n    },\n    \"reviewer\": \"synthetic-reviewer\",\n    \"reason\": \"Synthetische bronnen gecontroleerd\",\n    \"execution_mode\": \"mock-local-task\"\n  },\n  \"audit\": [\n    {\n      \"seq\": 1,\n      \"actor\": \"synthetic-agent\",\n      \"action\": \"proposed\",\n      \"created\": \"2026-10-29 07:49:00\"\n    },\n    {\n      \"seq\": 2,\n      \"actor\": \"synthetic-reviewer\",\n      \"action\": \"approved\",\n      \"created\": \"2026-10-29 07:49:00\"\n    },\n    {\n      \"seq\": 3,\n      \"actor\": \"synthetic-executor\",\n      \"action\": \"mock-task-created\",\n      \"created\": \"2026-10-29 07:49:00\"\n    }\n  ],\n  \"external_calls\": 0\n}\n",
+      "stderr": "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n  from starlette.testclient import TestClient as TestClient  # noqa\n"
+    },
+    {
+      "command": [
+        "/Users/philippegodfroy/microsoft-copilot-studio-automation/.venv/bin/python",
+        "scripts/package_connector.py",
+        "--origin",
+        "https://synthetic.example.com",
+        "--out",
+        "/var/folders/0t/_2j7v2495074t2z4ghq8jx3h0000gn/T/tmp9pg_k5sm/connector"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "{\n  \"artifact_type\": \"pac-custom-connector-input\",\n  \"tenant_import_verified\": false,\n  \"solution_export\": false,\n  \"files_sha256\": {\n    \"apiDefinition.swagger.json\": \"bb97153bd52b0a6e01dbb399df8c539bca017a8fbc8160bbf3ad5dd9dfb4b2b9\",\n    \"apiProperties.json\": \"afdd61e5b5c559c23d7555c906935b3c08c81c5f19e47a2817d785eefb2dd7f8\"\n  },\n  \"permissions\": [\n    \"ProposeDossierTask\",\n    \"GetDossierTask\"\n  ],\n  \"credentials_included\": false\n}\n",
+      "stderr": ""
+    }
+  ]
+}

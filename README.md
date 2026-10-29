@@ -2,7 +2,13 @@
 
 Een API met een concrete grens tussen **een taak voorstellen**, **menselijk goedkeuren** en **uitvoeren**. De meegeleverde Swagger 2.0-connector laat een Copilot-agent uitsluitend voorstellen en status opvragen. Goedkeuring en uitvoering gebruiken andere rollen en komen niet in het agentgereedschap.
 
-**Status:** werkende lokale API, persistente goedkeuringsflow en connectorbestand. De uitvoering maakt één lokale mocktaak aan; ze stuurt geen mail en wijzigt geen Teams, Dataverse, ERP of SharePoint. De connector is contractgetest, maar nog niet geïmporteerd/gepubliceerd in een Microsoft-tenant. Het [tenantdraaiboek](docs/tenant-setup.md) beschrijft die accountafhankelijke stappen.
+## Portfolio update — 29 October 2026
+
+Added strict approval booleans, safe credential handling, bounded request bodies, safe validation errors and correlated request metadata. A tested packaging command generates parameterized Swagger/API-properties input for `pac connector create`. A real [tenant-exported solution](solution/README.md) now contains the accepted agent-only connector; its reserved example host has no active backend.
+
+[Connector deployment package](docs/connector-deployment.md) · [Current evidence matrix](evidence/FEATURES.md)
+
+**Status:** werkende lokale API, persistente goedkeuringsflow en connectorbestand. De uitvoering maakt één lokale mocktaak aan; ze stuurt geen mail en wijzigt geen Teams, Dataverse, ERP of SharePoint. De connector is contractgetest en als artifact geïmporteerd in een bestaande developmenttenant; de echte solution-export staat in [solution](solution/README.md). Een Microsoft-connection, agentgesprek en backendaanroep zijn niet getest. Het [tenantdraaiboek](docs/tenant-setup.md) beschrijft die accountafhankelijke stappen.
 
 ## Lokaal uitvoeren
 
@@ -43,4 +49,4 @@ Een Copilot-conversatie is geen vertrouwde goedkeuringsidentiteit. Ook wanneer d
 
 ## Grenzen
 
-Dit is een integratiereferentie, geen geëxporteerde Power Platform-solution. Het repository levert geen fictieve solution-zip of als getest voorgestelde tenantconfiguratie. Je hebt een bevoegde Microsoft-omgeving, passende licenties, connectorbeleid en een beveiligde HTTPS-host nodig voor een echte proef. Entra JWT-validatie en externe taakuitvoering moeten apart worden geïmplementeerd en getest voordat je echte klantdata gebruikt. Met AI-ondersteuning gemaakt; beheersing moet je zelf aantonen.
+Dit is een integratiereferentie met een werkelijk uit de developmenttenant geëxporteerde unmanaged solution. Die bevat uitsluitend de agentconnector met een gereserveerde voorbeeldhost; geen geconfigureerde connection, agent of flow. Artifactimport is getest, tenant-runtimegedrag niet. Je hebt een bevoegde Microsoft-omgeving, passende licenties, connectorbeleid en een beveiligde HTTPS-host nodig voor een echte proef. Entra JWT-validatie en externe taakuitvoering moeten apart worden geïmplementeerd en getest voordat je echte klantdata gebruikt. Met AI-ondersteuning gemaakt; beheersing moet je zelf aantonen.

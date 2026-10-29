@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-29",
+  "tool": "Power Platform CLI 2.13.1",
+  "solution": "PhlppPortfolioApproval",
+  "version": "1.0.0.0",
+  "managed": false,
+  "environment_class": "existing authenticated development environment",
+  "connector_id": "f2a1d519-56d3-f111-a05d-6045bd29a82d",
+  "connector_import": "VERIFIED",
+  "solution_import": "VERIFIED",
+  "tenant_export": "VERIFIED",
+  "runtime_connection": "NOT VERIFIED",
+  "backend_host": "portfolio-api.example.com (reserved example, no active backend)",
+  "credentials_or_connections_exported": false,
+  "business_actions_executed": false,
+  "artifact": "solution/releases/PhlppPortfolioApproval_1_0_0_0.zip",
+  "sha256": "21a31c04ed7ee29ca023cf4f3929e91e4dfe9996572584d7c9f7c6ee6d8c284e",
+  "operations": [
+    "/requests",
+    "/requests/{request_id}"
+  ],
+  "commands": [
+    "pac solution init --publisher-name PhlppPortfolio --publisher-prefix phlpp --outputDirectory solution/PhlppPortfolioApproval",
+    "pac solution pack --folder solution/PhlppPortfolioApproval/src --zipfile TEMP_INITIAL_ZIP --packagetype Unmanaged",
+    "pac solution import --path TEMP_INITIAL_ZIP --environment ACTIVE_DEV_ENVIRONMENT",
+    "pac connector create --solution-unique-name PhlppPortfolioApproval --api-definition-file GENERATED_SWAGGER --api-properties-file GENERATED_PROPERTIES --environment ACTIVE_DEV_ENVIRONMENT",
+    "pac connector list",
+    "pac solution export --name PhlppPortfolioApproval --path TEMP_EXPORTED_ZIP --managed false --environment ACTIVE_DEV_ENVIRONMENT",
+    "pac solution unpack --zipfile TEMP_EXPORTED_ZIP --folder solution/PhlppPortfolioApproval/src --packagetype Unmanaged",
+    "pac solution import --path solution/releases/PhlppPortfolioApproval_1_0_0_0.zip --environment ACTIVE_DEV_ENVIRONMENT"
+  ],
+  "exported_zip_reimport": "VERIFIED: exported artifact successfully reimported into its own isolated development solution"
+}

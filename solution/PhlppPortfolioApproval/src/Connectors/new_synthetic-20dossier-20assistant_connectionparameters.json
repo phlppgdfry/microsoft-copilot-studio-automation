@@ -1,0 +1,1 @@
+{"api_key":{"type":"securestring","uiDefinition":{"constraints":{"clearText":false,"required":"true","tabIndex":2},"description":"Use only an agent role credential. Never reviewer or executor credentials.","displayName":"Agent proposal API key","tooltip":"Server-configured agent identity"}}}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Connector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <connectorid>f2a1d519-56d3-f111-a05d-6045bd29a82d</connectorid>
+  <description></description>
+  <displayname>Synthetic Dossier Assistant</displayname>
+  <iconbrandcolor>#216B64</iconbrandcolor>
+  <name>new_synthetic-20dossier-20assistant</name>
+  <connectortype>1</connectortype>
+  <openapidefinition>/Connector/new_synthetic-20dossier-20assistant_openapidefinition.json</openapidefinition>
+  <connectionparameters>/Connector/new_synthetic-20dossier-20assistant_connectionparameters.json</connectionparameters>
+  <policytemplateinstances>/Connector/new_synthetic-20dossier-20assistant_policytemplateinstances.json</policytemplateinstances>
+</Connector>

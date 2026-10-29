@@ -1,3 +1,4 @@
+from .security import install_security
 import hashlib
 import hmac
 import json
@@ -17,7 +18,7 @@ key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 def principal(key: str | None = Depends(key_header)):
     for secret, profile in json.loads(os.getenv("AUTOMATION_PRINCIPALS", "{}")).items():
-        if key and hmac.compare_digest(key, secret):
+        if key and hmac.compare_digest(key.encode("utf-8"), secret.encode("utf-8")):
             return profile
     raise HTTPException(401, "Invalid API key")
 
@@ -75,7 +76,7 @@ class Proposal(BaseModel):
 
 class Decision(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    approved: bool
+    approved: bool = Field(strict=True)
     reason: str = Field(min_length=5, max_length=500)
 
 
@@ -151,3 +152,6 @@ def audit(request_id: str, user=Depends(principal)):
     with database() as db:
         get_row(db, request_id, user)
         return [dict(row) for row in db.execute("SELECT seq,actor,action,created FROM audit WHERE request_id=? ORDER BY seq", (request_id,))]
+
+
+install_security(app, max_bytes=262144)

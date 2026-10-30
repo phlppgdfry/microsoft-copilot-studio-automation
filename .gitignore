@@ -13,3 +13,10 @@ data/
 build/
 dist/
 reports/
+
+# Local verification and package outputs
+.quality-venv/
+reports/
+build/
+dist/
+*.whl

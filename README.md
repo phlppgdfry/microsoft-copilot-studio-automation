@@ -1,6 +1,6 @@
 # Copilot Studio Dossier Automation
 
-[Current release evaluation](docs/release.md) · [Capability evidence](evidence/release-2026-10-30/FEATURES.md). Local checks are recorded; hosted CI and cloud runtime remain separately unverified.
+[Portfolio case study](https://github.com/phlppgdfry/ai-transformation-playbook/tree/portfolio/enterprise-quality-2026-10-29) · [Current release evaluation](docs/release.md) · [Capability evidence](evidence/release-2026-10-30/FEATURES.md). Local checks are recorded; hosted CI and cloud runtime remain separately unverified.
 
 Een API met een concrete grens tussen **een taak voorstellen**, **menselijk goedkeuren** en **uitvoeren**. De meegeleverde Swagger 2.0-connector laat een Copilot-agent uitsluitend voorstellen en status opvragen. Goedkeuring en uitvoering gebruiken andere rollen en komen niet in het agentgereedschap.
 

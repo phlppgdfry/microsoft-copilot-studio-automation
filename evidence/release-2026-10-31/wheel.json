@@ -1,0 +1,15 @@
+{
+  "wheel": "microsoft_copilot_studio_automation-0.1.0-py3-none-any.whl",
+  "sha256": "0004b092cd5d0c485006b1a823c9c37d176579fad886191e75458d9f98e1e2b0",
+  "members": [
+    "automation/__init__.py",
+    "automation/api.py",
+    "automation/demo.py",
+    "automation/security.py",
+    "microsoft_copilot_studio_automation-0.1.0.dist-info/licenses/LICENSE",
+    "microsoft_copilot_studio_automation-0.1.0.dist-info/METADATA",
+    "microsoft_copilot_studio_automation-0.1.0.dist-info/WHEEL",
+    "microsoft_copilot_studio_automation-0.1.0.dist-info/top_level.txt",
+    "microsoft_copilot_studio_automation-0.1.0.dist-info/RECORD"
+  ]
+}

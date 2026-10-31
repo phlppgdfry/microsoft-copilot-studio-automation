@@ -1,5 +1,7 @@
 # Copilot Studio Dossier Automation
 
+**Stack:** Python · FastAPI · Pydantic · SQLite · Swagger 2.0 custom connector · Power Platform solution artifact. [Portfolio v1.0 release scope](docs/releases/portfolio-v1.0.0.md).
+
 [Portfolio case study](https://github.com/phlppgdfry/ai-transformation-playbook/tree/portfolio/enterprise-quality-2026-10-29) · [Current release evaluation](docs/release.md) · [Capability evidence](evidence/release-2026-10-30/FEATURES.md). Local and hosted release checks passed; [exact commit and workflow evidence](https://github.com/phlppgdfry/ai-transformation-playbook/blob/portfolio/enterprise-quality-2026-10-29/portfolio/release-2026-10-31/REPORT.md). Cloud runtime remains unverified.
 
 Een API met een concrete grens tussen **een taak voorstellen**, **menselijk goedkeuren** en **uitvoeren**. De meegeleverde Swagger 2.0-connector laat een Copilot-agent uitsluitend voorstellen en status opvragen. Goedkeuring en uitvoering gebruiken andere rollen en komen niet in het agentgereedschap.

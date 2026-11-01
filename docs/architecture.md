@@ -13,7 +13,7 @@ sequenceDiagram
   R->>A: Beslissing met reden
   A->>D: approved of rejected + reviewer
   W->>A: Execute request_id
-  A->>D: Controle approved; INSERT mocktask + completed
+  A->>D: Controle approved en INSERT mocktask naar completed
   C->>A: Status opvragen
   A-->>C: Definitieve status, geen belofte vooraf
 ```

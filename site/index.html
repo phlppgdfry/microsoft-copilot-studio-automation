@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Copilot Studio Dossier Automation — an agent may propose, only people may approve</title>
+<meta name="description" content="A FastAPI service and Swagger 2.0 custom connector that let a Copilot Studio agent propose dossier tasks, while approval and execution stay with separate human and server roles. Replay a recorded run.">
+<link rel="canonical" href="https://phlppgdfry.github.io/microsoft-copilot-studio-automation/">
+<meta property="og:type" content="website"><meta property="og:title" content="Copilot Studio Dossier Automation — an agent may propose, only people may approve"><meta property="og:description" content="A FastAPI service and Swagger 2.0 custom connector that let a Copilot Studio agent propose dossier tasks, while approval and execution stay with separate human and server roles. Replay a recorded run.">
+<meta property="og:url" content="https://phlppgdfry.github.io/microsoft-copilot-studio-automation/"><meta property="og:image" content="https://phlppgdfry.github.io/microsoft-copilot-studio-automation/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0d12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2360a5fa'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/showcase.css">
+<style>:root{--brand:#60a5fa;--accent-ink:#03101f}
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:760px){.cs-grid{grid-template-columns:1fr}}
+.cs-card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.cs-ct{font-weight:600;margin-bottom:8px}
+.cs-ops{list-style:none;margin:0;padding:0;font:13px var(--mono)}
+.cs-ops li{padding:6px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.cs-ops li:first-child{border-top:0}
+.cs-steps{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 12px}
+.cs-steps button{font:500 13px var(--sans);padding:8px 12px;border-radius:9px;border:1px solid var(--line2);background:var(--bg2);color:var(--muted);cursor:pointer}
+.cs-steps button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:transparent;font-weight:600}
+.cs-stage{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:260px}
+.cs-two{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.cs-two>*{min-width:0}
+@media (max-width:760px){.cs-two{grid-template-columns:1fr}}
+.cs-pre{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12px;color:var(--muted);overflow:auto;max-height:240px;margin:8px 0 0}
+.cs-audit{list-style:none;margin:6px 0 0;padding:0;font-size:14px}
+.cs-audit li{padding:7px 0;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <a class="brand" href="#"><i class="dot"></i><span>Copilot Studio Dossier Automation</span></a>
+  <nav><a class="" href="#demo">Try it</a><a class="" href="#how">How it works</a><a class="hide-sm" href="#run">Run it</a><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation" aria-label="GitHub repository">GitHub</a><button class="theme" type="button" aria-label="Toggle light or dark theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button></nav>
+</div></div>
+<main>
+<header class="hero"><div class="wrap grid">
+  <div>
+    <div class="kicker"><span>Copilot Studio · Power Platform · FastAPI</span><span class="chip status">Integration reference</span></div>
+    <h1>The agent can <em>propose</em>. It cannot approve.</h1>
+    <p class="lede">A Copilot agent in Teams is helpful for asking which dossier documents are missing. It should never be the one that approves or executes the follow-up. This API draws that line in code: the custom connector exposes only "propose" and "get status", while a reviewer key decides and an executor key acts, once, with an audit trail.</p>
+    <div class="ctas"><a class="btn primary" href="#demo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Replay the run</a><a class="btn" href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg> Source on GitHub</a></div>
+    <div class="stack"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Pydantic</span><span class="chip">SQLite</span><span class="chip">Swagger 2.0 connector</span><span class="chip">Power Platform solution</span><span class="chip">Docker</span><span class="chip">pytest</span></div>
+  </div>
+  <div class="hero-visual"><div class="frame"><div class="bar"><i></i><i></i><i></i><b>127.0.0.1:8085/docs · Swagger UI</b></div><img src="img/microsoft-copilot-studio-automation-shots-swagger.webp" alt="Copilot Studio Dossier Automation" width="1600" height="1125"></div><div class="caption">The real API, run locally: six endpoints, of which the agent connector exposes two.</div></div>
+</div></header>
+<section id="why"><div class="wrap">
+  <p class="eyebrow">Why it exists</p><h2>"The user said it was approved" is not an approval.</h2>
+  <div class="problem">
+    <div class="card before"><div class="label">Without it</div><p>A Copilot flow that can both suggest and execute turns a chat message into an action. A user typing "my manager approved this" or a retried call is enough to send mail, change records or create a task twice.</p></div>
+    <div class="card after"><div class="label">With it</div><p>The connector the agent uses has no approve or execute operation. Decisions need a reviewer key that differs from the requester, execution needs an executor key, retries with the same idempotency key cannot create a second task, and every step is audited.</p></div>
+  </div>
+</div></section>
+<section id="demo"><div class="wrap">
+  <p class="eyebrow">Try it · runs in your browser</p><h2>Replay a recorded run</h2>
+  <p class="sub">Recorded by <code>python -m automation.demo</code> against the real API with a temporary database (<code>evidence/demo.json</code>). Step through it to see who may do what, and what the server refuses.</p>
+  <div class="demo"><div class="cs-grid">
+  <div class="cs-card"><div class="cs-ct">Copilot agent · via the Swagger 2.0 connector</div><ul class="cs-ops"><li><span class="pill info">POST</span> /requests <span class="dim small">ProposeDossierTask</span></li><li><span class="pill info">GET</span> /requests/{id} <span class="dim small">GetDossierTask</span></li></ul><p class="small dim">That is the whole connector. The agent cannot approve, reject or execute, whatever the user types in the chat.</p></div>
+  <div class="cs-card"><div class="cs-ct">People and server roles · outside the connector</div><ul class="cs-ops"><li><span class="pill warn">POST</span> /requests/{id}/decision <span class="dim small">reviewer key</span></li><li><span class="pill warn">POST</span> /requests/{id}/execute <span class="dim small">executor key</span></li><li><span class="pill">GET</span> /requests/{id}/audit</li></ul><p class="small dim">Each key is bound to one role and one tenant in server configuration.</p></div>
+</div>
+<div class="cs-steps" id="cs-steps"></div>
+<div class="cs-stage" id="cs-stage"></div>
+</div>
+  <p class="note">Synthetic dossiers only (<code>SYN-</code> prefix). The execution step creates a local mock task; it sends no mail and changes nothing in Teams, Dataverse, ERP or SharePoint.</p>
+</div></section>
+<section id="how"><div class="wrap">
+  <p class="eyebrow">How it works</p><h2>Three roles, one state machine</h2>
+  
+  <div class="cards"><div class="card"><div class="ic">01</div><h3>Narrow connector</h3><p>A Swagger 2.0 custom connector with two operations, exported in a real unmanaged Power Platform solution from a development tenant.</p></div><div class="card"><div class="ic">02</div><h3>Four-eyes review</h3><p>Approve or reject needs a reviewer key and a reason; the reviewer cannot be the requester, and a decision is final.</p></div><div class="card"><div class="ic">03</div><h3>Execute exactly once</h3><p>Persistent idempotency with a payload hash: the same key with a different payload gets 409, and simultaneous retries yield one task.</p></div><div class="card"><div class="ic">04</div><h3>Tenant-bound keys</h3><p>Each random key maps to one role and one tenant in server configuration; a Copilot conversation is never treated as an identity.</p></div></div>
+  <h3 style="margin:34px 0 14px">The flow, step by step</h3><div class="flow" role="list"><div class="node"><div class="n">01</div><b>Copilot agent</b><small>proposes via the custom connector</small></div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="node"><div class="n">02</div><b>Pending request</b><small>stored with idempotency key and payload hash</small></div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="node hl"><div class="n">03</div><b>Reviewer decides</b><small>separate key, reason required</small></div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="node"><div class="n">04</div><b>Executor acts</b><small>one local mock task</small></div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="node"><div class="n">05</div><b>Audit</b><small>every step with actor and time</small></div></div>
+</div></section>
+<section id="evidence"><div class="wrap">
+  <p class="eyebrow">Evidence</p><h2>What is real, and what is not</h2>
+  
+  <div class="metrics"><div class="metric"><div class="v">2 of 6</div><div class="l">endpoints in the agent connector</div><div class="s">propose and read status only</div></div><div class="metric"><div class="v">21</div><div class="l">automated tests</div><div class="s">including negative role and replay tests</div></div><div class="metric"><div class="v">0</div><div class="l">external calls in the demo</div><div class="s">no mail, Teams, Dataverse or ERP</div></div></div>
+  <div class="honest" style="margin-top:18px">
+      <div class="card real"><h3><span class="pill ok">REAL</span> Built and verified</h3><ul><li>FastAPI service, role checks, four-eyes review, idempotent execution and audit, with tests and CI</li><li>Swagger 2.0 connector and a solution artifact actually exported from a development tenant</li><li>Docker image and a recorded end-to-end demo run</li></ul></div>
+      <div class="card sim"><h3><span class="pill warn">SIMULATED</span> Mocked or not built yet</h3><ul><li>No Copilot agent, connection or Power Automate flow runs in a tenant; import was tested, runtime behaviour was not</li><li>Execution creates a local mock task only</li><li>All dossiers and people are synthetic</li></ul></div></div>
+</div></section>
+<section id="run"><div class="wrap two">
+  <div><p class="eyebrow">Run it yourself</p><h2>Run it locally</h2>
+  
+  <div class="code"><button class="copy" type="button">Copy</button><pre><code>git clone https://github.com/phlppgdfry/microsoft-copilot-studio-automation
+cd microsoft-copilot-studio-automation
+python3.13 -m venv .venv
+.venv/bin/python -m pip install -r requirements.lock
+.venv/bin/python -m pip install --no-deps -e .
+.venv/bin/python -m pytest -q
+.venv/bin/python -m automation.demo          # the run replayed above
+.venv/bin/python scripts/bootstrap.py        # random role keys in .env
+.venv/bin/uvicorn automation.api:app --env-file .env --host 127.0.0.1 --port 8085</code></pre></div></div>
+  <div><p class="eyebrow">Go deeper</p><h2>Read the source</h2>
+  <div class="links"><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation"><span>Repository</span><span>github</span></a><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation/blob/HEAD/docs/architecture.md"><span>Architecture and process</span><span>docs</span></a><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation/blob/HEAD/docs/tenant-setup.md"><span>Copilot Studio and Power Automate setup</span><span>nl</span></a><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation/blob/HEAD/connectors/dossier-agent.swagger.json"><span>Agent connector (Swagger 2.0)</span><span>json</span></a><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation/blob/HEAD/docs/security.md"><span>Threat model</span><span>docs</span></a><a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation/blob/HEAD/evidence/README.md"><span>Recorded evidence</span><span>md</span></a></div></div>
+</div></section></main>
+<footer><div class="wrap">
+  <span>Copilot Studio Dossier Automation · A portfolio project by Philippe Godfroy</span>
+  <span><a href="https://www.philippegodfroy.com/work">More projects</a> · <a href="https://github.com/phlppgdfry/microsoft-copilot-studio-automation">Source</a></span>
+</div></footer>
+<script src="assets/showcase.js"></script>
+
+<script src="assets/demo.js" type="module"></script>
+</body></html>

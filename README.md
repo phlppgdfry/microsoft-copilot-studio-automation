@@ -1,5 +1,11 @@
 # Copilot Studio Dossier Automation
 
+<!-- showcase:start -->
+> **[▶ Live showcase](https://phlppgdfry.github.io/microsoft-copilot-studio-automation/)** — see the connector boundary and replay a recorded run step by step: the agent proposes, execution without approval is refused, a reviewer decides, an executor acts once.
+
+[![Live showcase: microsoft-copilot-studio-automation](site/demo.png)](https://phlppgdfry.github.io/microsoft-copilot-studio-automation/)
+<!-- showcase:end -->
+
 **Stack:** Python · FastAPI · Pydantic · SQLite · Swagger 2.0 custom connector · Power Platform solution artifact. [Portfolio v1.0 release scope](docs/releases/portfolio-v1.0.0.md).
 
 [Portfolio case study](https://github.com/phlppgdfry/ai-transformation-playbook/tree/portfolio/enterprise-quality-2026-10-29) · [Current release evaluation](docs/release.md) · [Capability evidence](evidence/release-2026-10-30/FEATURES.md). Local and hosted release checks passed; [exact commit and workflow evidence](https://github.com/phlppgdfry/ai-transformation-playbook/blob/portfolio/enterprise-quality-2026-10-29/portfolio/release-2026-10-31/REPORT.md). Cloud runtime remains unverified.
